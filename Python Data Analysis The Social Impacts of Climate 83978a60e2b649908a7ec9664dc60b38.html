@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python Data Analysis: The Social Impacts of Climate Change</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="83978a60-e2b6-4990-8a7e-c9664dc60b38" class="page sans"><header><img class="page-cover-image" src="Python%20Data%20Analysis%20The%20Social%20Impacts%20of%20Climate%2083978a60e2b649908a7ec9664dc60b38/SOCIAL_IMPACTS_OF_CLIMATE_CHANGE_(Facebook_Cover).png" style="object-position:center 50%"/><h1 class="page-title">Python Data Analysis: The Social Impacts of Climate Change</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Skills</th><td><span class="selected-value select-value-color-pink">Data Analysis</span><span class="selected-value select-value-color-red">Data Visualization</span><span class="selected-value select-value-color-gray">Machine Learning</span><span class="selected-value select-value-color-yellow">Python</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Brief Summary</th><td>Analysis of various datasets to measure the impact of climate change across different populations</td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>GitHub</th><td><a href="https://github.com/makaylalerner/socialclimatechange/" class="url-value">https://github.com/makaylalerner/socialclimatechange/</a></td></tr></tbody></table></header><div class="page-body"><h2 id="b9006c01-887c-46b1-b705-b8178647dc2c" class="">Overview</h2><p id="eda8099f-75e4-4467-bb79-630a20e56e57" class="">This project will analyze various datasets to measure the impact of climate change across different populations. This study seeks to identify socioeconomic factors, such as race, income, etc., which contribute to the varying degrees of climate change consequences across communities. The aforementioned &quot;consequences of climate change&quot; include changes in health, labor, and property. Finally, this project will use machine learning to predict further consequences of climate change inaction.</p><h2 id="51172903-df6b-41ea-84fe-ce3afea0c9d6" class="">Related Work</h2><p id="4917cd39-fb8b-47bc-8688-2ad30b2eb840" class="">A few datasets were needed to gather the whole picture:</p><ul id="b4482aa2-9e78-4a22-9566-a3ddc31ce3d0" class="bulleted-list"><li style="list-style-type:disc">EPA. 2021. Climate Change and Social Vulnerability in the United States: A Focus on Six Impacts. U.S. Environmental Protection Agency. (2021, September). Retrieved October 31, 2022 from <a href="https://www.epa.gov/cira/social-vulnerability-report">https://www.epa.gov/cira/social-vulnerability-report</a></li></ul><ul id="1807a6d0-2498-4ac0-a811-56ea696240b1" class="bulleted-list"><li style="list-style-type:disc">NCEI.Monitoring.Info@noaa.gov. (n.d.). National Time Series: Climate at a glance. National Time Series | Climate at a Glance | National Centers for Environmental Information (NCEI). Retrieved November 27, 2022, from <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/national/time-series/110/tavg/all/1/1895-2022?base_prd=true&amp;begbaseyear=1901&amp;endbaseyear=2000">https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/national/time-series/110/tavg/all/1/1895-2022?base_prd=true&amp;begbaseyear=1901&amp;endbaseyear=2000</a></li></ul><h2 id="4a16239d-3695-4863-bd6f-9baa4e153f02" class="">Initial questions</h2><ul id="c997388a-522f-4427-a36f-4bbffc6ca620" class="bulleted-list"><li style="list-style-type:disc">Is there a correlation between the race of a population and the impact of rising temperatures on health?</li></ul><ul id="17deb7fc-e923-449c-8cdf-7d2cfca3c763" class="bulleted-list"><li style="list-style-type:disc">Is there a correlation between the race of a population and the impact of natural disasters on health?</li></ul><ul id="dc187727-fb46-4496-9f33-469c51009d2c" class="bulleted-list"><li style="list-style-type:disc">Is there a correlation between the average income of a population and the impact of rising temperatures on health?</li></ul><ul id="74ca97f6-f12a-4652-9364-b5e22fa83229" class="bulleted-list"><li style="list-style-type:disc">Is there a correlation between the average income of a population and the impact of natural disasters on health?</li></ul><ul id="eeae8c03-d61f-4eda-98b4-ac22f1682f0e" class="bulleted-list"><li style="list-style-type:disc">Are some populations more vulnerable to climate catastrophes than others?</li></ul><ul id="550c6900-c5ee-4448-94e3-ab8007ba7188" class="bulleted-list"><li style="list-style-type:disc">How does the forecasted impact of climate change look across different populations? Are there trends related to socioeconomic factors?</li></ul><h2 id="c66a3c52-3737-4ac5-86ed-f88dbe2d27c1" class="">Data</h2><p id="61048008-a509-4201-87c9-d2d65a468eec" class="">All datasets were adapted from curated Excel workbooks provided by the EPA. Excel Worksheets were stripped of formatting and saved as individual CSVs. Those CSVs were then uploaded to GitHub to be loaded in by link. After loading, each dataset was cleaned as needed, such as dropping and replacing NaN values. Not all data imported was used in the analysis.</p><h2 id="36c1243e-ceba-4afc-8463-14679fb528b8" class="">Findings and Conclusion</h2><p id="6b0bf817-5750-4390-a06a-79766479e314" class="">It is known that minority and low income populations are at more risk to the consequences of climate change. This report looks at how that risk increases with temperature and sea level increases.</p><p id="706959ba-8524-4c76-b8c6-525742dd956f" class=""><strong>8.1 Minority Status and Climate Risk</strong></p><p id="5a0494ef-e2ce-4ec3-9e50-25315786e392" class="">Asthma related ER visits:</p><ul id="5743ac42-6b65-4c97-80e9-f515235dc1c3" class="bulleted-list"><li style="list-style-type:disc">About 8% of the variation in risk at a 1 degree, 2 degrees, and 3 degrees global mean temperature increase is explained by having a minority status</li></ul><ul id="104a62ac-d4a6-40c8-ba15-e344f382ecb3" class="bulleted-list"><li style="list-style-type:disc">About 7% of the variation in risk at a 4 degree global mean temperature increase is explained by having a minority status.</li></ul><ul id="32dcb9b9-f495-4fbb-bedd-419f6e9e5ee0" class="bulleted-list"><li style="list-style-type:disc">About 6% of the variation in risk at a 5 degree global mean temperature increase is explained by having a minority status.</li></ul><ul id="3dc1536f-b994-4b1f-ab98-5c32eb46b788" class="bulleted-list"><li style="list-style-type:disc">Average variation: 7.4%, reject the alternate hypothesis and accept the null</li></ul><p id="e1668d67-a1a2-4e4f-b98e-149181d6d610" class="">Premature Mortality (Z):</p><ul id="76c13ff9-27ce-446f-ae93-bc715f6d2e29" class="bulleted-list"><li style="list-style-type:disc">About 20% of the variation in risk at a 1 degree and 4 degrees global mean temperature increase is explained by having a minority status.</li></ul><ul id="8134c7ec-f696-4090-bd6f-497f56c46beb" class="bulleted-list"><li style="list-style-type:disc">About 15% of the variation in risk at 2 degrees global mean temperature increase is explained by having a minority status.</li></ul><ul id="03585c37-a305-403c-b62a-7cb09c717fa8" class="bulleted-list"><li style="list-style-type:disc">About 37% of the variation in risk at 5 degrees global mean temperature increase is explained by having a minority status.</li></ul><ul id="5e479cbd-5b07-44d3-aa2c-7a7e0a617bc8" class="bulleted-list"><li style="list-style-type:disc">Average variation: 18.4%, accept the alternate hypothesis</li></ul><p id="70b05fff-21d9-490a-8b1b-2903e6fd83ce" class="">National Mortality:</p><ul id="abff477c-5e41-4e4c-9c80-9f29d45ebcf7" class="bulleted-list"><li style="list-style-type:disc">About 26% of the variation in risk at 1 degree global mean temperature increase is explained by having a minority status</li></ul><ul id="032bd4b9-c29d-4b8a-9be4-f81d32013750" class="bulleted-list"><li style="list-style-type:disc">About 15% of the variation in risk at 2 degrees global mean temperature increase is explained by having a minority status.</li></ul><ul id="4c8b27c4-289c-41a2-a4d5-e6a62517de31" class="bulleted-list"><li style="list-style-type:disc">About 22% of the variation in risk at 3 and 4 degrees global mean temperature increase is explained by having a minority status.</li></ul><ul id="e65434a5-9b71-4f60-a1b3-2f40508df81d" class="bulleted-list"><li style="list-style-type:disc">About 23% of the variation in risk at a 5 degree temperature is explained by having a minority status.</li></ul><ul id="29d99c83-60db-49e0-b4d2-839af825b4fa" class="bulleted-list"><li style="list-style-type:disc">Average variation: 21.6%, accept the alternate hypothesis</li></ul><p id="f19febff-52cb-47c9-b6b6-42e65c9bf5e2" class="">Weather Delays:</p><ul id="11eb7d3c-df83-4044-b6dc-53c3876c1e3c" class="bulleted-list"><li style="list-style-type:disc">About 8% of the variation in risk at 1 and 2 degree global mean temperature increase is explained by having a minority status.</li></ul><ul id="4a7d5e82-68b1-42eb-b9ea-c8d131b9eb4e" class="bulleted-list"><li style="list-style-type:disc">About 7% of the variation in risk at 3, 4, and 5 degree global mean temperature increase is explained by having a minority status.</li></ul><ul id="e8c0ee5b-38ce-4419-9edc-636d6be626c0" class="bulleted-list"><li style="list-style-type:disc">Average variation: 7.4%, accept the null hypothesis</li></ul><p id="7f57a6a1-ac87-43d8-a049-b0121996777e" class="">High Tide Flooding Delays:</p><ul id="c7f1053a-c6ee-42c4-84ca-8edadb9227af" class="bulleted-list"><li style="list-style-type:disc">About 2% of the variation in risk at 25 cm sea level increase is explained by having a minority status.</li></ul><ul id="4a063329-a7f0-4581-a31c-87260ac93bd1" class="bulleted-list"><li style="list-style-type:disc">About 5% of the variation in risk at 50 cm sea level increase is explained by having a minority status.</li></ul><ul id="cdaa93da-45bf-4cab-9ec5-e83d06467f0b" class="bulleted-list"><li style="list-style-type:disc">About 7% of the variation in risk at 75 cm sea level increase is explained by having a minority status.</li></ul><ul id="42c2ea59-4a18-48e8-9376-dab6b62ca3ba" class="bulleted-list"><li style="list-style-type:disc">About 8% of the variation in risk at 100 cm, 125 cm, and 150 cm sea level increases are explained by having a minority status.</li></ul><ul id="9e9322e9-f998-40f0-aa7a-29da21b4b569" class="bulleted-list"><li style="list-style-type:disc">Average variation: 6.3%, accept the null hypothesis</li></ul><p id="79f735aa-ab8c-474c-8487-435657b8722f" class="">Property Damage:</p><ul id="b35dd70a-1fac-44a8-8feb-02b2bd75503d" class="bulleted-list"><li style="list-style-type:disc">About 4% of the variation in risk at 25 cm, 50 cm, 75 cm sea level increase is explained by having a minority status.</li></ul><ul id="7d9dd2c5-6a7f-41ee-809c-a475a7925cbc" class="bulleted-list"><li style="list-style-type:disc">About 8% of the variation in risk at 100 cm and 150 cm sea level increase is explained by having a minority status.</li></ul><ul id="0b04fc8d-cdbc-409c-b290-ec9b15794812" class="bulleted-list"><li style="list-style-type:disc">About 10% of the variation in risk at 125 cm sea level increase is explained by having a minority status.</li></ul><ul id="f250ddc6-31e3-4b27-a478-763ecbbba61c" class="bulleted-list"><li style="list-style-type:disc">Average variation: 6.3%, accept the null hypothesis</li></ul><p id="9a29f491-03b5-4971-b402-eaa7c7145a7c" class="">Labor Hours:</p><ul id="bee78e4c-65bf-4195-b95a-a293f23fc99f" class="bulleted-list"><li style="list-style-type:disc">About 50% of the variation in risk at 1 degrees mean global temperature increase is explained by having a minority status.</li></ul><ul id="fcca8542-341b-4a15-b88a-085376b27a06" class="bulleted-list"><li style="list-style-type:disc">About 56% of the variation in risk at 2 degrees mean global temperature increase is explained by having a minority status.</li></ul><ul id="270ecdf4-2d46-47e6-80f2-7282c56447ad" class="bulleted-list"><li style="list-style-type:disc">About 66% of the variation in risk at 3 degrees mean global temperature increase is explained by having a minority status.</li></ul><ul id="ce4f505f-075b-4340-a2f8-0b25c3bca9e8" class="bulleted-list"><li style="list-style-type:disc">About 38% of the variation in risk at 4 degrees mean global temperature increase is explained by having a minority status.</li></ul><ul id="2dbd6b9f-7288-49c1-8ef8-5e5864c98c2e" class="bulleted-list"><li style="list-style-type:disc">About 30% of the variation in risk at 5 degrees mean global temperature increase is explained by having a minority status.</li></ul><ul id="780e867d-1218-4fa1-bb86-2df55fa54571" class="bulleted-list"><li style="list-style-type:disc">Average variation: 48%, accept the alternate hypothesis</li></ul><p id="c9c69f35-a480-4361-92ca-aa0c197e3840" class="">High correlations between minority status and risk of climate consequences as temperature rises are seen in the loss of labor hours.</p><p id="7660916d-b1fb-4b75-842a-451cb3e57ae6" class=""><strong>8.2 Income Status and Climate Risk</strong></p><p id="df812aad-3545-4c0b-8d89-789216a0f9e5" class="">Asthma Related ER visits:</p><ul id="f491c877-ad9b-42fd-81db-0f9728f8e135" class="bulleted-list"><li style="list-style-type:disc">About 6% of the variation in risk at a 1 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="fa7da152-756a-4441-b34b-3eb439d3980c" class="bulleted-list"><li style="list-style-type:disc">About 25% of the variation in risk at a 2 degree global mean temperature increase is explained by having a low income status</li></ul><ul id="94dd381f-1604-423b-8de5-16c877e2f5b1" class="bulleted-list"><li style="list-style-type:disc">About 38% of the variation in risk at 3 degrees global mean temperature increase is explained by having a low income status.</li></ul><ul id="79f89060-d841-4379-b7bf-accaafad5134" class="bulleted-list"><li style="list-style-type:disc">About 19% of the variation in risk at 4 degrees global mean temperature increase is explained by having a low income status.</li></ul><ul id="ef3ce9ae-26f3-432b-87e4-e8a6f68010d4" class="bulleted-list"><li style="list-style-type:disc">About 31% of the variation in risk at 5 degrees global mean temperature increase is explained by having a low income status.</li></ul><ul id="484701f2-5322-493a-93b6-9be7819bb7a9" class="bulleted-list"><li style="list-style-type:disc">Average variation: 23.8%, accept the alternate hypothesis</li></ul><p id="b78d10eb-1ba9-4b6f-a639-d54e1e2d128b" class="">New Asthma Cases:</p><ul id="c4492fe2-afd6-4590-a05e-4772df383e8d" class="bulleted-list"><li style="list-style-type:disc">About 40% of the variation in risk at a 1 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="0cc86b80-1e5b-4f42-8c74-30694da2e7e4" class="bulleted-list"><li style="list-style-type:disc">About 30% of the variation in risk at a 2 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="37add951-14e7-40e8-a89a-9c9755f7d0a1" class="bulleted-list"><li style="list-style-type:disc">About 52% of the variation in risk at a 3 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="37209f63-33bf-4405-bacd-1b7d82569f75" class="bulleted-list"><li style="list-style-type:disc">About 18% of the variation in risk at a 4 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="7df20df3-4000-48ec-b53c-d618b849b65a" class="bulleted-list"><li style="list-style-type:disc">About 20% of the variation in risk at a 5 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="fc882fb5-74e4-4f51-8f94-7310d46ab3cd" class="bulleted-list"><li style="list-style-type:disc">Average variation: 32%, accept the alternate hypothesis</li></ul><p id="b7b4bf02-3954-4531-881d-cb3ecaa78862" class="">Premature Mortality (Di):</p><ul id="f92489bd-a1e2-45f0-8b73-51deab0943ff" class="bulleted-list"><li style="list-style-type:disc">About 40% of the variation in risk at a 1 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="11b63783-8155-4132-8482-5d0e0ba4aeff" class="bulleted-list"><li style="list-style-type:disc">About 29% of the variation in risk at a 2 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="cd6c8706-dda4-476b-b169-a59aa545133f" class="bulleted-list"><li style="list-style-type:disc">About 52% of the variation in risk at a 3 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="18528efc-5d89-41fa-a517-1a5c8e674ac8" class="bulleted-list"><li style="list-style-type:disc">About 18% of the variation in risk at a 4 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="77291bf2-ae46-431f-bde0-1f483c418216" class="bulleted-list"><li style="list-style-type:disc">About 20% of the variation in risk at a 5 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="c4844caa-b239-4a8f-9202-d81826e48322" class="bulleted-list"><li style="list-style-type:disc">Average variation: 31.8%, accept the alternate hypothesis</li></ul><p id="96c23f5b-32d6-4710-8f67-79b93b835c6e" class="">Premature Mortality (Z):</p><ul id="6846a155-e82d-4125-a624-bbfda6cfd264" class="bulleted-list"><li style="list-style-type:disc">About 61% of the variation in risk at a 1 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="957eced5-96ac-427a-bb3d-cc872562db21" class="bulleted-list"><li style="list-style-type:disc">About 15% of the variation in risk at a 2 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="f5f73f21-072e-4d56-9518-21867e980928" class="bulleted-list"><li style="list-style-type:disc">The coefficient of variation at a 3 degree global mean temperature increase is insignificant.</li></ul><ul id="9aebd03b-9650-4d4f-b085-8ea8a1203c95" class="bulleted-list"><li style="list-style-type:disc">About 31% of the variation in risk at a 4 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="8114e60a-1992-4d23-b8ce-747c90950eb9" class="bulleted-list"><li style="list-style-type:disc">About 15% of the variation in risk at a 5 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="696fa0d6-0344-4c42-b510-eee7d3b1cd94" class="bulleted-list"><li style="list-style-type:disc">Average variation: 30.5 %, accept the alternate</li></ul><p id="b493224b-c325-4f5a-81f5-a1c7703cc549" class="">Weather Delays (temperature and precipitation):</p><ul id="d5e11c6b-2175-4296-9d04-71f0524ef612" class="bulleted-list"><li style="list-style-type:disc">About 56% of the variation in risk at a 1 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="5add4a4a-b77c-4c92-92d8-ad2c5870e57a" class="bulleted-list"><li style="list-style-type:disc">About 12% of the variation in risk at a 2 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="d8c22d9b-c334-43c2-8810-2043ab34a90c" class="bulleted-list"><li style="list-style-type:disc">About 22% of the variation in risk at a 3 degree and 4 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="d83a7364-dda6-461d-84da-5a70087e78d6" class="bulleted-list"><li style="list-style-type:disc">About 24% of the variation in risk at a 5 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="f0787ede-08a9-4de6-9ab6-e89edc4a209f" class="bulleted-list"><li style="list-style-type:disc">Average variation: 27.2%, accept the alternate hypothesis </li></ul><p id="da2627fb-0dd6-4f87-bf71-8ecd4c1e3eb9" class="">Weather Delays (high tide flooding):</p><ul id="0906e1f3-b53c-435f-a4a4-918057f15b25" class="bulleted-list"><li style="list-style-type:disc">About 67% of the variation in risk at a 25 cm sea level increase is explained by having a low income status.</li></ul><ul id="2e265471-a671-485b-87ba-1f5496495022" class="bulleted-list"><li style="list-style-type:disc">About 30% of the variation in risk at a 50 cm and 75 cm sea level increase is explained by having a low income status.</li></ul><ul id="05675829-3574-4245-a291-797c50c94603" class="bulleted-list"><li style="list-style-type:disc">About 5% of the variation in risk at a 100 cm sea level increase is explained by having a low income status.</li></ul><ul id="d0527a1c-d3cd-48ee-9f7c-c67c91cf34fb" class="bulleted-list"><li style="list-style-type:disc">About 11% of the variation in risk at a 125 cm sea level increase is explained by having a low income status.</li></ul><ul id="e2a8a5ed-c4b4-4b19-b391-ebc670628291" class="bulleted-list"><li style="list-style-type:disc">About 12% of the variation in risk at a 150 cm sea level increase is explained by having a low income status.</li></ul><ul id="e47c95b2-3d58-46aa-aed8-080d7a09711c" class="bulleted-list"><li style="list-style-type:disc">Average variation: 28.3%, accept the alternate</li></ul><p id="5fa396aa-0629-4e99-96ad-698c1c62a2fc" class="">Lost Labor Hours:</p><ul id="bacf8e5a-2fa9-47a1-9fc1-b2e51e5b50de" class="bulleted-list"><li style="list-style-type:disc">About 30% of the variation in risk at a 1 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="6c105a71-41c0-4429-ae7f-cb7dacceafa7" class="bulleted-list"><li style="list-style-type:disc">About 14% of the variation in risk at a 2 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="b8f7955f-2d58-4fee-8a21-28d688a21a96" class="bulleted-list"><li style="list-style-type:disc">About 24% of the variation in risk at a 3 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="ff3fba6b-62c2-4859-86af-bfce92d5c4e8" class="bulleted-list"><li style="list-style-type:disc">About 68% of the variation in risk at a 4 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="6f4450eb-bcef-42c5-a709-2dd8fb90ec4a" class="bulleted-list"><li style="list-style-type:disc">About 11% of the variation in risk at a 5 degree global mean temperature increase is explained by having a low income status.</li></ul><ul id="391eaedb-8ca3-4737-bf61-f735ea09f4da" class="bulleted-list"><li style="list-style-type:disc">Average variation: 29.4%, accept the alternate</li></ul><p id="719b617c-43aa-49a4-96db-aeb8b5d1c5b8" class="">Property Damage:</p><ul id="a5643c1c-4cea-4a8c-994a-9af9891bf596" class="bulleted-list"><li style="list-style-type:disc">About 70% of the variation in risk at a 25 cm sea level increase is explained by having a low income status.</li></ul><ul id="f2e5b68a-05e0-4721-8847-a028c4a883e2" class="bulleted-list"><li style="list-style-type:disc">About 14% of the variation in risk at a 50 cm sea level increase is explained by having a low income status.</li></ul><ul id="f2b72377-722d-4b4f-a68c-8a2da96c6da2" class="bulleted-list"><li style="list-style-type:disc">About 20% of the variation in risk at a 75 cm sea level increase is explained by having a low income status.</li></ul><ul id="8417f8c0-8c5d-41cc-93aa-0ce5afc14c66" class="bulleted-list"><li style="list-style-type:disc">About 1% of the variation in risk at a 100 cm sea level increase is explained by having a low income status.</li></ul><ul id="34485930-0231-4443-8727-f0cd7a3429ca" class="bulleted-list"><li style="list-style-type:disc">About 17% of the variation in risk at a 125 cm sea level increase is explained by having a low income status.</li></ul><ul id="024ec833-f8c7-4797-ad0e-a6e9e82357fe" class="bulleted-list"><li style="list-style-type:disc">About 0.3% of the variation in risk at a 150 cm sea level increase is explained by having a low income status.</li></ul><ul id="3f8a9139-e5f8-4e14-aa9d-6faab0b5f223" class="bulleted-list"><li style="list-style-type:disc">Average variation: 20.4%, accept the alternate</li></ul><p id="cb77c1dc-b45a-4fe2-a8dc-089c31b7c948" class="">Highest average correlations between low income status and new cases of asthma and premature mortality.</p><p id="101bafa7-bd9f-4e22-a9a7-f43fd0cd4073" class=""><strong>8.3 Prediction Model</strong></p><p id="cdd0a79f-49cc-4e13-8464-06942449dd04" class="">Using an ETS or exponential smoothing model and historical data of monthly temperature averages from 1895 to 2022, a 10 year (2020 - 2030) and 80 year (2020 - 2100) predictions were generated. An ETS model was used because the data presents as a time series with monthly data points. ETS models account for error, trend, and seasonality in a series to create predictions based on historical data. Default parameters were used. Both models showed a change of -0.003 degrees between January 2020 and January 2030 and 2100 respectively. It is noted that this model does not take any additional factors into account.</p><p id="557ea410-55f8-46dc-958a-e45abb0bea2b" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
